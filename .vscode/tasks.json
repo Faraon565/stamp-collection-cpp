@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Сборка проекта (Все папки)",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-std=c++17",
+                
+                // 1. Файлы исходного кода (.cpp)
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/Tests.cpp",
+                "${workspaceFolder}/model/*.cpp",
+                "${workspaceFolder}/logic/*.cpp",
+                "${workspaceFolder}/memory/*.cpp",
+
+                // 2. Где искать заголовки (.h), чтобы не менять include в коде
+                "-I${workspaceFolder}/model",
+                "-I${workspaceFolder}/logic",
+                "-I${workspaceFolder}/memory",
+
+                // 3. Библиотека для замера памяти (psapi.h)
+                "-lpsapi",
+
+                // 4. Имя выходного файла
+                "-o",
+                "${workspaceFolder}/app.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Компиляция проекта коллекции марок"
+        }
+    ]
+}

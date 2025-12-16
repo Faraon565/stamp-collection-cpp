@@ -1,0 +1,11 @@
+image: gcc:latest
+
+stages:
+  - test
+
+run_tests:
+  stage: test
+  script:
+    - g++ main.cpp Tests.cpp model/*.cpp logic/*.cpp memory/*.cpp -o app
+    - chmod +x app
+    - printf "1\n\n" | ./app
